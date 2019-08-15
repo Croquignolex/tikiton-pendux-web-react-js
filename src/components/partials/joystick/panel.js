@@ -9,7 +9,7 @@ class Panel extends Component {
         PropTypes.shape({
           id: PropTypes.number.isRequired,
           value: PropTypes.string.isRequired,
-          isGuessed: PropTypes.bool.is
+          isGuessed: PropTypes.bool.isRequired
         })
       ).isRequired
     }

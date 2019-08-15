@@ -7,7 +7,7 @@ class Button extends Component {
       letter: PropTypes.shape({
         id: PropTypes.number.isRequired,
         value: PropTypes.string.isRequired,
-        isGuessed: PropTypes.bool
+        isGuessed: PropTypes.bool.isRequired
       }).isRequired
     }
 
@@ -23,7 +23,7 @@ class Button extends Component {
     render() {  
         const {isGuessed} = this.props.letter 
         const buttonStyle = isGuessed 
-          ? 'btn btn-secondary m-1' 
+          ? 'btn outline-danger m-1' 
           : 'btn btn-primary m-1'
 
         return (

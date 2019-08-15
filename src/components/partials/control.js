@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 // import PropTypes from 'prop-types'
 
-class Control extends Component {
+class Panel extends Component {
     // static defaultProps = {}
     // static propTypes = {}
 
@@ -39,4 +39,4 @@ class Control extends Component {
     }
 }
 
-export default Control;
+export default Panel;
