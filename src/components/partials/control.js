@@ -1,18 +1,21 @@
 import React, { Component } from 'react'; 
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 class Panel extends Component {
     // static defaultProps = {}
-    // static propTypes = {}
+    static propTypes = {
+        shuffleWord: PropTypes.func.isRequired
+    }
 
     constructor(props) { super(props); }
-
+  
     render() {  
         return (
             <div className="row text-center">
                 <div className="col border border-primary p-2 mr-1">
                     <button className="btn btn-outline-primary mr-1" 
-                            type="button" title="Shuffle">
+                            type="button" title="Shuffle" 
+                            onClick={this.props.shuffleWord}>
                         <i className="fa fa-random"/>
                     </button>
                     <button className="btn btn-outline-danger ml-1" 

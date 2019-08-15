@@ -8,7 +8,8 @@ class Button extends Component {
         id: PropTypes.number.isRequired,
         value: PropTypes.string.isRequired,
         isGuessed: PropTypes.bool.isRequired
-      }).isRequired
+      }).isRequired,
+      guessLetter: PropTypes.func.isRequired
     }
 
     constructor(props)  { 
@@ -23,7 +24,7 @@ class Button extends Component {
     render() {  
         const {isGuessed} = this.props.letter 
         const buttonStyle = isGuessed 
-          ? 'btn outline-danger m-1' 
+          ? 'btn btn-secondary m-1' 
           : 'btn btn-primary m-1'
 
         return (

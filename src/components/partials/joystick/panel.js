@@ -11,7 +11,8 @@ class Panel extends Component {
           value: PropTypes.string.isRequired,
           isGuessed: PropTypes.bool.isRequired
         })
-      ).isRequired
+      ).isRequired,
+      guessLetter: PropTypes.func.isRequired
     }
 
     render() {  

@@ -18,12 +18,12 @@ class Zone extends Component {
     render() {  
         const {value, isGuessed} = this.props.letter
         const buttonStyle = isGuessed 
-            ? 'btn btn-lg btn-outline-success mr-1 ml-1' 
+            ? 'btn btn-lg btn-outline-primary mr-1 ml-1' 
             : 'btn btn-lg btn-outline-secondary m-1 ml-1'
 
         return (
             <button type="button" className={buttonStyle} disabled>
-                {isGuessed && value}
+                {isGuessed ? value.toUpperCase() : '-'}
             </button>
         );
     }

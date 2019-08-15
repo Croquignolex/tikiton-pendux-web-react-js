@@ -1,15 +1,20 @@
 import React, { Component } from 'react'; 
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 class Score extends Component {
     // static defaultProps = {}
-    // static propTypes = {}
+    static propTypes = {
+        point: PropTypes.number.isRequired
+    }
 
     constructor(props) { super(props); }
 
     render() {  
         return (
-        <div>This is the score area</div>);
+            <div>
+                Votre scrore est {this.props.point}
+            </div>
+        );
     }
 }
 
