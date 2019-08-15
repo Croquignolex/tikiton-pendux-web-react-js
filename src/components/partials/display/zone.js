@@ -13,16 +13,16 @@ class Zone extends Component {
         }).isRequired
     }
 
-    constructor(props) { super(props); }
+    // constructor(props) { super(props); }
 
     render() {  
         const {value, isGuessed} = this.props.letter
         const buttonStyle = isGuessed 
-            ? 'btn btn-lg btn-outline-primary mr-1 ml-1' 
-            : 'btn btn-lg btn-outline-secondary m-1 ml-1'
+            ? 'btn btn-success m-1 p-3' 
+            : 'btn btn-outline-secondary m-1 p-3'
 
         return (
-            <button type="button" className={buttonStyle} disabled>
+            <button type="button" className={buttonStyle} style={{borderRadius: 0}}>
                 {isGuessed ? value.toUpperCase() : '-'}
             </button>
         );

@@ -14,7 +14,7 @@ class Display extends Component {
         ).isRequired
     }
 
-    constructor(props) { super(props); }
+    // constructor(props) { super(props); }
 
     render() {  
         const inputs = this.props.arrayWord.map(

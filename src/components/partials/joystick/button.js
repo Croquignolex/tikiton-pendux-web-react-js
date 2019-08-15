@@ -29,7 +29,7 @@ class Button extends Component {
 
         return (
           <button type="button" className={buttonStyle} disabled={isGuessed}
-            onClick={this.handleGuessLetter}>
+            onClick={this.handleGuessLetter} style={{borderRadius: 0}}>
               {this.props.letter.value.toUpperCase()}
           </button> 
         );

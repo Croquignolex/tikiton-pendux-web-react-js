@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import WORDS from '../data/words'
 import LETTERS from '../data/letters'
-import Control from './partials/control'
+import Reset from './partials/reset'
 import Display from './partials/display/panel'
 import Joystick from './partials/joystick/panel'
 import Score from './partials/score'
+import Timer from './partials/timer'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -18,19 +19,26 @@ class Master extends Component {
     constructor(props) {
         super(props); 
         this.state = {
-            point: 0,
+            points: 0,
+            timer: 0,
             words: WORDS,
             letters: LETTERS, 
             hiddenWordAsArray: this.shuffleWordArray()
         }
         this.guessLetter = this.guessLetter.bind(this)
-        this.shuffleWord = this.shuffleWord.bind(this)
+        this.resetGame = this.resetGame.bind(this)
+        this.tick = this.tick.bind(this)
+        this.initializeTick = this.initializeTick.bind(this)
+        this.clearTick = this.clearTick.bind(this)
     }
 
+    componentDidMount() {this.initializeTick()}
+    componentWillUnmount() {this.clearTick()}
+
     guessLetter(_id) {
-        this.setState(oldState => {
+        this.setState(_state => {
             let guessLetter = ''; let isGuessed = false; let isAllGuessed = true
-            oldState.letters.map(_letter => {
+            _state.letters.map(_letter => {
                 if(_letter.id === _id) {
                     _letter.isGuessed = true
                     guessLetter = _letter.value
@@ -38,53 +46,73 @@ class Master extends Component {
                 return _letter
             })
 
-            oldState.hiddenWordAsArray.map(_letter => {
+            _state.hiddenWordAsArray.map(_letter => {
                 if(_letter.value === guessLetter) {
                     _letter.isGuessed = true
                     isGuessed = true
                 }
-                 if(!_letter.isGuessed) isAllGuessed = false
+                if(!_letter.isGuessed) isAllGuessed = false
                 return _letter
             })
-            isGuessed ? (oldState.point += 2) : (oldState.point -= 1)
+
+            this.resetTick() 
+            isGuessed ? (_state.points += 3) : (_state.points -= 2) 
+            _state.timer = 0
+
             if(isAllGuessed) {
-                oldState.letters.map(_letter => _letter.isGuessed = true) 
+                _state.letters.map(_letter => _letter.isGuessed = true) 
+                this.clearTick()
             }
             
-            return oldState;
+            return _state;
         })
     }
 
-    shuffleWord() {
-        this.setState(oldState => {
-            oldState.letters.map(_letter => _letter.isGuessed = false) 
-            oldState.hiddenWordAsArray = this.shuffleWordArray()
-            oldState.point = 0
-            return oldState;
+    resetGame() {
+        this.resetTick() 
+        this.setState(_state => {
+            _state.letters.map(_letter => _letter.isGuessed = false)
+            _state.hiddenWordAsArray = this.shuffleWordArray()
+            _state.points = 0
+            _state.timer = 0
+            return _state
         })
-        toast.info("This is a new word, Good luck", {position: toast.POSITION.TOP_LEFT})
+        toast.info("This is a new word, Good luck", {position: toast.POSITION.TOP_RIGHT})
     }
 
     render() {  
-        const {hiddenWordAsArray, letters, point} = this.state
+        const {hiddenWordAsArray, letters, points, timer} = this.state
+        const pointsColor = this.getPointsColor(points)
+        const pointBorderStyle = `border border-${pointsColor}`
+        const pointTextStyle = `text-${pointsColor}`
         
         return (
             <div className="container mt-5"> 
                 <ToastContainer autoClose={5000}/>
-                <div className="row"> 
-                    <div className="col-4 offset-4 mb-3">
-                        <Control shuffleWord={this.shuffleWord}/>
+                <div className="row">
+                    <div className="col-12 alert alert-primary text-center" style={{borderRadius: 0}}>PENDU</div>
+                    <div className="col-lg-2 col-md-2 col-sm-4 col-xs-12 mb-4 align-self-start"> 
+                        <div className={pointBorderStyle}>
+                            <div className="mb-1 pt-2 pb-2">
+                                <Reset resetGame={this.resetGame}/>
+                            </div>
+                            <div className="m-1 pt-2 pb-2">
+                                <Timer progression={timer}/>
+                            </div>
+                            <div className="mt-1 pt-2 pb-2">
+                                <Score points={points} color={pointTextStyle}/>
+                            </div>
+                        </div> 
                     </div>
-                    <div className="col-4 offset-4 border border-primary p-2 mb-4">
-                        <Score point={point}/>
+                    <div className="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                        <div className="border border-primary pt-5 pb-5 pl-2 pr-2 mb-5">
+                            <Display arrayWord={hiddenWordAsArray}/>
+                        </div>
+                        <div className="border border-primary pt-3 pb-3 pl-2 pr-2">
+                            <Joystick letters={letters} guessLetter={this.guessLetter}/>
+                        </div>
                     </div>
-                    <div className="col-12 border border-primary pt-5 pb-5 mb-5">
-                        <Display arrayWord={hiddenWordAsArray}/>
-                    </div>
-                    <div className="col-6 offset-3 border border-primary p-2">
-                        <Joystick letters={letters} guessLetter={this.guessLetter}/>
-                    </div>
-                    
+                    <div className="col-12 alert alert-primary text-right mt-3" style={{borderRadius: 0}}>By tikiton P</div>
                 </div>
             </div>   
         );
@@ -95,6 +123,31 @@ class Master extends Component {
         return [...randomHiddenWord].map(
             (_letter, _index) => ({id: _index, value: _letter, isGuessed: false})
         )
+    }
+    
+    getPointsColor(_points) {
+        if(_points === 0) return 'warning'
+        else if(_points < 0) return 'danger'
+        else return 'success'
+    }
+
+    initializeTick() {this.interval = setInterval(() => this.tick(), 1000)}
+    clearTick() {clearInterval(this.interval)}
+
+    resetTick() {
+        this.clearTick();
+        this.initializeTick()
+    }
+    
+    tick() { 
+        this.setState(_state => {
+            if(_state.timer === 10) {
+                _state.timer = 0 
+                _state.points -= 1
+            } else _state.timer += 1 
+            
+            return _state
+        })
     }
 }
 
