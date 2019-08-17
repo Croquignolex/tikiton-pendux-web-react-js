@@ -90,7 +90,7 @@ class Master extends Component {
             <div className="container mt-5"> 
                 <ToastContainer autoClose={5000}/>
                 <div className="row">
-                    <div className="col-12 alert alert-primary text-center" style={{borderRadius: 0}}>PENDU</div>
+                    <div className="col-12 alert alert-primary text-center" style={{borderRadius: 0}}>PENDUX</div>
                     <div className="col-lg-2 col-md-2 col-sm-4 col-xs-12 mb-4 align-self-start"> 
                         <div className={pointBorderStyle}>
                             <div className="mb-1 pt-2 pb-2">
