@@ -1,0 +1,30 @@
+const LETTERS = [
+    {id: 0, value: 'a', isGuessed: false},
+    {id: 1, value: 'b', isGuessed: false},
+    {id: 2, value: 'c', isGuessed: false},
+    {id: 3, value: 'd', isGuessed: false},
+    {id: 4, value: 'e', isGuessed: false},
+    {id: 5, value: 'f', isGuessed: false},
+    {id: 6, value: 'g', isGuessed: false},
+    {id: 7, value: 'h', isGuessed: false},
+    {id: 8, value: 'i', isGuessed: false},
+    {id: 9, value: 'j', isGuessed: false},
+    {id: 10, value: 'k', isGuessed: false},
+    {id: 11, value: 'l', isGuessed: false},
+    {id: 12, value: 'm', isGuessed: false},
+    {id: 13, value: 'n', isGuessed: false},
+    {id: 14, value: 'o', isGuessed: false},
+    {id: 15, value: 'p', isGuessed: false},
+    {id: 16, value: 'q', isGuessed: false},
+    {id: 17, value: 'r', isGuessed: false},
+    {id: 18, value: 's', isGuessed: false},
+    {id: 19, value: 't', isGuessed: false},
+    {id: 20, value: 'u', isGuessed: false},
+    {id: 21, value: 'v', isGuessed: false},
+    {id: 22, value: 'w', isGuessed: false},
+    {id: 23, value: 'x', isGuessed: false},
+    {id: 24, value: 'y', isGuessed: false},
+    {id: 25, value: 'z', isGuessed: false}
+]
+
+export default LETTERS
