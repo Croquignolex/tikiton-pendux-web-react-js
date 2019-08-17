@@ -1,4 +1,4 @@
-HOW TO PLAY PENDU
+HOW TO PLAY PENDUX
 
 You have to guess the random hidden world type choosing each letter
 You have 10s the guess a letter or your overall score will be reduced of 1
