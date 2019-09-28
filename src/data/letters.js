@@ -25,6 +25,6 @@ const LETTERS = [
     {id: 23, value: 'x', isGuessed: false},
     {id: 24, value: 'y', isGuessed: false},
     {id: 25, value: 'z', isGuessed: false}
-]
+];
 
 export default LETTERS

@@ -1,17 +1,9 @@
-import React, { Component } from 'react'; 
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 class Score extends Component {
-    // static defaultProps = {}
-    static propTypes = {
-        points: PropTypes.number.isRequired,
-        color: PropTypes.string.isRequired
-    }
-
-    // constructor(props) { super(props); }
-
     render() {  
-        const {points, color} = this.props
+        const {points, color} = this.props;
         
         return (
             <div className="text-center row">
@@ -20,6 +12,11 @@ class Score extends Component {
                 </div> 
             </div>
         );
+    }
+
+    static propTypes = {
+        points: PropTypes.number.isRequired,
+        color: PropTypes.string.isRequired
     }
 }
 
