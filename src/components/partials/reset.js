@@ -1,26 +1,27 @@
-import React, { Component } from 'react'; 
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 class Reset extends Component {
-    // static defaultProps = {}
-    static propTypes = {
-        resetGame: PropTypes.func.isRequired
+    handleResetGame() {
+        this.props.resetGame()
     }
 
-    // constructor(props) { super(props); }
-  
     render() {  
         return (
             <div className="row text-center">
                 <div className="col">
                     <button className="btn btn-outline-danger" 
                             type="button" title="Reset" style={{borderRadius: 0}}
-                            onClick={this.props.resetGame}>
+                            onClick={() => this.handleResetGame()}>
                         <i className="fa fa-repeat"/>
                     </button>
                 </div>
             </div>
         );
+    }
+
+    static propTypes = {
+        resetGame: PropTypes.func.isRequired
     }
 }
 

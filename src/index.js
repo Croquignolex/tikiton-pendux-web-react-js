@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
+//TODO: Replace bootstrap and font-awesome by react-... components
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.min.css'
 
-import Master from './components/master'
-import * as serviceWorker from './serviceWorker';
+import Master from './pages/master'
+import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(<Master />, document.getElementById('root'));
 
@@ -13,3 +14,7 @@ ReactDOM.render(<Master />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+//TODO: Add Redux architecture
+//TODO: Pop modal to confirm reset
+//TODO: Pop a success message when the target is reached
